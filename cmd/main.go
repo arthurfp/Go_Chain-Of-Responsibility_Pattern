@@ -6,6 +6,12 @@ import (
 )
 
 func main() {
-	baseHandler := &chain.BaseHandler{}
-	fmt.Println(baseHandler.Handle("Test Request"))
+	handlerA := &chain.ConcreteHandlerA{}
+	handlerB := &chain.ConcreteHandlerB{}
+
+	handlerA.SetNext(handlerB)
+
+	fmt.Println(handlerA.Handle("A"))
+	fmt.Println(handlerA.Handle("B"))
+	fmt.Println(handlerA.Handle("C"))
 }
